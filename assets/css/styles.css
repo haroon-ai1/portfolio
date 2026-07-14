@@ -294,9 +294,14 @@ textarea {
     text-align: center;
   }
 
-  /* Contain the CTA pill INSIDE the overlay — no floating outside */
-  .nav__link-button {
-    display: inline-flex;
+  /* Contain the CTA pill INSIDE the overlay — no floating outside.
+     !important + position: static defensively neutralizes any rule
+     (present or future) that would fix/absolute-position it in the header. */
+  .nav__link-button,
+  .nav__cta,
+  .nav__button {
+    position: static !important;
+    display: inline-flex !important;
   }
 }
 
@@ -1433,4 +1438,9 @@ body.custom-cursor .cursor {
   .about__image { display: none; }
   .about__container { grid-template-columns: 1fr; }
   .about__content { grid-column: 1 / -1; }
+}
+
+/* Neural-network hero canvas: desktop only (perf on mobile) */
+@media screen and (max-width: 1149px) {
+  #nn-canvas { display: none !important; }
 }

@@ -276,7 +276,8 @@
   /* -----------------------------------------------------------
      7b. Hero neural-network canvas (desktop only, skipped on reduced motion)
      ----------------------------------------------------------- */
-  if (!prefersReducedMotion && !isCoarsePointer) {
+  if (window.matchMedia('(min-width: 1150px)').matches &&
+      !prefersReducedMotion) {
     const canvas = document.getElementById('nn-canvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
