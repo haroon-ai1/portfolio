@@ -1441,6 +1441,6 @@ body.custom-cursor .cursor {
 }
 
 /* Neural-network hero canvas: desktop only (perf on mobile) */
-@media screen and (max-width: 1149px) {
+@media screen and (max-width: 899px) {
   #nn-canvas { display: none !important; }
 }
