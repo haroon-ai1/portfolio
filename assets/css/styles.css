@@ -288,6 +288,14 @@ textarea {
 
   .nav__list {
     font-size: 1.1rem;
+    flex-direction: column;
+    row-gap: 2.5rem;
+    text-align: center;
+  }
+
+  /* Contain the CTA pill INSIDE the overlay — no floating outside */
+  .nav__link-button {
+    display: inline-flex;
   }
 }
 
@@ -1397,4 +1405,11 @@ body.custom-cursor .cursor {
 @keyframes typed-blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+}
+
+/* Mobile: hide the duplicate About-section portrait (already shown in hero) */
+@media screen and (max-width: 767px) {
+  .about__image { display: none; }
+  .about__container { grid-template-columns: 1fr; }
+  .about__content { grid-column: 1 / -1; }
 }
