@@ -259,8 +259,8 @@ textarea {
   transform: translateY(-1px);
 }
 
-/* Mobile overlay menu */
-@media (max-width: 767px) {
+/* Mobile + tablet overlay menu — desktop nav only at ≥1150px */
+@media (max-width: 1149px) {
   .nav__menu {
     position: fixed;
     inset: 0;
@@ -291,7 +291,12 @@ textarea {
   }
 }
 
-@media (min-width: 768px) {
+/* Lock body scroll while the overlay is open */
+body.menu-open {
+  overflow: hidden;
+}
+
+@media (min-width: 1150px) {
   .nav__toggle,
   .nav__close {
     display: none;
@@ -356,6 +361,23 @@ textarea {
   justify-items: center;
   position: relative;
   z-index: 1;
+}
+
+#nn-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+@media (pointer: coarse) {
+  #nn-canvas {
+    display: none;
+  }
 }
 
 /* Smaller halos behind About + Contact section titles */
@@ -584,6 +606,7 @@ textarea {
 }
 
 .work__card {
+  position: relative;
   background-color: var(--bg-card);
   border: 1px solid var(--border);
   padding: 1rem;
@@ -610,6 +633,7 @@ textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  background-color: var(--bg-elevated);
 }
 
 .work__button {
@@ -1172,6 +1196,82 @@ textarea {
   .cursor {
     display: none !important;
   }
+}
+
+/* ---------- 15b. Detection-reticle cursor + work-card bbox ---------- */
+.cursor-reticle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-1000px, -1000px);
+  transition: opacity 0.2s ease;
+  will-change: transform;
+}
+
+body.custom-cursor,
+body.custom-cursor a,
+body.custom-cursor button,
+body.custom-cursor input,
+body.custom-cursor textarea,
+body.custom-cursor .work__card {
+  cursor: none;
+}
+
+/* Legacy blue-dot cursor is superseded by the reticle when active */
+body.custom-cursor .cursor {
+  display: none !important;
+}
+
+@media (pointer: coarse) {
+  .cursor-reticle {
+    display: none !important;
+  }
+}
+
+.work__card.is-detected {
+  transform: translateY(-4px);
+}
+
+.work__card.is-detected::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  pointer-events: none;
+  background:
+    linear-gradient(to right,  var(--accent-primary) 14px, transparent 14px) top left     / 14px  1.5px no-repeat,
+    linear-gradient(to bottom, var(--accent-primary) 14px, transparent 14px) top left     / 1.5px 14px  no-repeat,
+    linear-gradient(to left,   var(--accent-primary) 14px, transparent 14px) top right    / 14px  1.5px no-repeat,
+    linear-gradient(to bottom, var(--accent-primary) 14px, transparent 14px) top right    / 1.5px 14px  no-repeat,
+    linear-gradient(to right,  var(--accent-primary) 14px, transparent 14px) bottom left  / 14px  1.5px no-repeat,
+    linear-gradient(to top,    var(--accent-primary) 14px, transparent 14px) bottom left  / 1.5px 14px  no-repeat,
+    linear-gradient(to left,   var(--accent-primary) 14px, transparent 14px) bottom right / 14px  1.5px no-repeat,
+    linear-gradient(to top,    var(--accent-primary) 14px, transparent 14px) bottom right / 1.5px 14px  no-repeat;
+  animation: reticle-blink 1.5s ease-in-out infinite;
+}
+
+.work__card.is-detected::after {
+  content: attr(data-detection-label);
+  position: absolute;
+  top: -22px;
+  left: 4px;
+  background: var(--accent-primary);
+  color: var(--bg-body);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  padding: 3px 9px;
+  border-radius: 3px;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+@keyframes reticle-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.65; }
 }
 
 /* ---------- 16. Focus states (a11y) ---------- */

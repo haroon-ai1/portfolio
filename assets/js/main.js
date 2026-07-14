@@ -60,16 +60,26 @@
   const navToggle = $('#nav-toggle');
   const navClose  = $('#nav-close');
 
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', () => navMenu.classList.add('show-menu'));
-  }
-  if (navClose && navMenu) {
-    navClose.addEventListener('click', () => navMenu.classList.remove('show-menu'));
-  }
+  const openNav = () => {
+    if (!navMenu) return;
+    navMenu.classList.add('show-menu');
+    document.body.classList.add('menu-open');
+    lenis?.stop();
+  };
+
+  const closeNav = () => {
+    if (!navMenu) return;
+    navMenu.classList.remove('show-menu');
+    document.body.classList.remove('menu-open');
+    lenis?.start();
+  };
+
+  if (navToggle) navToggle.addEventListener('click', openNav);
+  if (navClose)  navClose.addEventListener('click', closeNav);
 
   // Close menu when a link is clicked
   $$('.nav__link').forEach((link) => {
-    link.addEventListener('click', () => navMenu?.classList.remove('show-menu'));
+    link.addEventListener('click', closeNav);
   });
 
   /* -----------------------------------------------------------
@@ -264,6 +274,86 @@
   }
 
   /* -----------------------------------------------------------
+     7b. Hero neural-network canvas (desktop only, skipped on reduced motion)
+     ----------------------------------------------------------- */
+  if (!prefersReducedMotion && !isCoarsePointer) {
+    const canvas = document.getElementById('nn-canvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      const hero = document.getElementById('home');
+      let nodes = [];
+      let animId = null;
+      const NODE_COUNT = 30;
+      const CONNECT_DIST = 130;
+
+      function resize() {
+        canvas.width = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
+      }
+      function initNodes() {
+        nodes = [];
+        for (let i = 0; i < NODE_COUNT; i++) {
+          nodes.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.25,
+            vy: (Math.random() - 0.5) * 0.25,
+            r: Math.random() * 1.4 + 1,
+          });
+        }
+      }
+      function tick() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        nodes.forEach((n) => {
+          n.x += n.vx; n.y += n.vy;
+          if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+          if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+        });
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const d = Math.hypot(dx, dy);
+            if (d < CONNECT_DIST) {
+              ctx.strokeStyle = `rgba(96, 165, 250, ${(1 - d / CONNECT_DIST) * 0.35})`;
+              ctx.lineWidth = 0.5;
+              ctx.beginPath();
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+        nodes.forEach((n) => {
+          ctx.fillStyle = 'rgba(96, 165, 250, 0.6)';
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        animId = requestAnimationFrame(tick);
+      }
+
+      resize();
+      initNodes();
+      tick();
+      window.addEventListener('resize', () => { resize(); initNodes(); });
+
+      // Pause when hero scrolls out of view (perf + battery)
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            if (!animId) tick();
+          } else {
+            cancelAnimationFrame(animId);
+            animId = null;
+          }
+        });
+      }, { threshold: 0 });
+      io.observe(hero);
+    }
+  }
+
+  /* -----------------------------------------------------------
      8. Custom cursor (desktop only)
      ----------------------------------------------------------- */
   const cursor = $('#cursor');
@@ -278,6 +368,37 @@
       el.addEventListener('mouseenter', () => cursor.classList.add('is-hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('is-hover'));
     });
+  }
+
+  /* -----------------------------------------------------------
+     8b. Detection-reticle cursor + work-card bbox (desktop only)
+     ----------------------------------------------------------- */
+  if (
+    window.matchMedia('(pointer: fine)').matches &&
+    !prefersReducedMotion
+  ) {
+    const reticle = document.getElementById('cursor-reticle');
+    if (reticle) {
+      document.body.classList.add('custom-cursor');
+
+      let mouseX = 0, mouseY = 0, currX = 0, currY = 0;
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      (function loop() {
+        currX += (mouseX - currX) * 0.25;
+        currY += (mouseY - currY) * 0.25;
+        reticle.style.transform =
+          `translate(${currX}px, ${currY}px) translate(-50%, -50%)`;
+        requestAnimationFrame(loop);
+      })();
+
+      $$('.work__card').forEach((card) => {
+        card.addEventListener('mouseenter', () => card.classList.add('is-detected'));
+        card.addEventListener('mouseleave', () => card.classList.remove('is-detected'));
+      });
+    }
   }
 
   /* -----------------------------------------------------------
