@@ -424,4 +424,34 @@
       }
     });
   });
+
+  /* -----------------------------------------------------------
+     10. Typed.js — rotating hero role (kept LAST, isolated).
+     ----------------------------------------------------------- */
+  const typedTarget = document.getElementById('typed-target');
+  if (typedTarget && typeof Typed !== 'undefined') {
+    try {
+      new Typed('#typed-target', {
+        strings: [
+          'ML Engineer.',
+          'AI Developer.',
+          'CV Researcher.',
+          'Deep Learning nerd.'
+        ],
+        typeSpeed: 55,
+        backSpeed: 35,
+        backDelay: 2200,
+        startDelay: 400,
+        loop: true,
+        smartBackspace: true,
+        showCursor: true,
+        cursorChar: '|'
+      });
+      console.log('[typed] initialized');
+    } catch (e) {
+      console.error('[typed] init failed:', e);
+    }
+  } else {
+    console.warn('[typed] skipped — target or library missing');
+  }
 })();
