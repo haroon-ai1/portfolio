@@ -288,8 +288,12 @@
       const CONNECT_DIST = 130;
 
       function resize() {
-        canvas.width = hero.offsetWidth;
-        canvas.height = hero.offsetHeight;
+        // Fall back to viewport dims if hero hasn't laid out yet — a zero
+        // backing store stretches to the CSS 100%/100% box and renders blurry.
+        const w = hero.offsetWidth  || window.innerWidth;
+        const h = hero.offsetHeight || window.innerHeight;
+        canvas.width  = w;
+        canvas.height = h;
       }
       function initNodes() {
         nodes = [];
@@ -334,10 +338,12 @@
         animId = requestAnimationFrame(tick);
       }
 
-      resize();
-      initNodes();
+      // Defer initial sizing one frame so layout is fully resolved,
+      // and re-size on window load once fonts/images settle the hero height.
+      requestAnimationFrame(() => { resize(); initNodes(); });
       tick();
       window.addEventListener('resize', () => { resize(); initNodes(); });
+      window.addEventListener('load',   () => { resize(); initNodes(); });
 
       // Pause when hero scrolls out of view (perf + battery)
       const io = new IntersectionObserver((entries) => {
