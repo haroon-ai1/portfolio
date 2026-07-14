@@ -338,12 +338,17 @@
         animId = requestAnimationFrame(tick);
       }
 
-      // Defer initial sizing one frame so layout is fully resolved,
-      // and re-size on window load once fonts/images settle the hero height.
-      requestAnimationFrame(() => { resize(); initNodes(); });
-      tick();
-      window.addEventListener('resize', () => { resize(); initNodes(); });
-      window.addEventListener('load',   () => { resize(); initNodes(); });
+      // Size the backing store BEFORE starting tick, or we render into 300x150 blurry stretch.
+      function boot() {
+        resize();
+        initNodes();
+        if (!animId) tick();
+      }
+
+      // Run once now, then again on load in case fonts/images changed hero height.
+      boot();
+      window.addEventListener('load',   boot);
+      window.addEventListener('resize', boot);
 
       // Pause when hero scrolls out of view (perf + battery)
       const io = new IntersectionObserver((entries) => {
