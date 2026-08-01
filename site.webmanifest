@@ -1,0 +1,23 @@
+{
+  "name": "Muhammad Haroon — AI Engineer",
+  "short_name": "Haroon",
+  "description": "RAG and retrieval systems, computer vision, and models deployed to production.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#EEF3FA",
+  "background_color": "#EEF3FA",
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
