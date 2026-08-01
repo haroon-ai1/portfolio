@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Muhammad Haroon — Computer Vision & ML Engineer based in Islamabad. Portfolio of shipped vision systems." />
+  <meta name="description" content="Muhammad Haroon — AI engineering student in Islamabad. RAG and retrieval systems, computer vision, and models deployed to production." />
   <meta name="author" content="Muhammad Haroon" />
+  <meta name="theme-color" content="#EEF3FA" />
+  <meta name="color-scheme" content="light" />
 
   <!-- TODO: replace favicon.png with a real favicon -->
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
 
-  <title>Muhammad Haroon — CV/ML Engineer</title>
+  <title>Muhammad Haroon — AI Engineer</title>
 
   <!-- Google Fonts: Poppins (body) + Playfair Display (signature italic) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -44,7 +46,7 @@
         <ul class="nav__list">
           <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
           <li class="nav__item"><a href="#work" class="nav__link">Works</a></li>
-          <li class="nav__item"><a href="#service" class="nav__link">My Services</a></li>
+          <li class="nav__item"><a href="#service" class="nav__link">Focus</a></li>
           <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
           <li class="nav__item">
             <a href="#contact" class="nav__link nav__link-button">Contact me</a>
@@ -68,18 +70,26 @@
       <canvas id="nn-canvas" aria-hidden="true"></canvas>
       <div class="home__container container grid">
         <div class="home__content">
-          <p class="home__eyebrow">Hi! I'm Haroon — Based in Islamabad</p>
+          <p class="home__eyebrow">
+            Hi! I'm Haroon — BS Artificial Intelligence, SZABIST Islamabad
+          </p>
           <h1 class="home__title">
-            Computer Vision &amp;
+            AI Engineer
             <span class="home__title-italic"><span id="typed-target"></span></span>
           </h1>
           <p class="home__description">
-            I build vision systems that ship — from research to production.
+            I build AI systems end to end — retrieval, vision, deployment — and
+            I evaluate them before I call them done.
           </p>
 
-          <a href="#contact" class="button">
-            Hire me <i class="ri-arrow-right-up-line"></i>
-          </a>
+          <div class="home__actions">
+            <a href="#work" class="button">
+              See my work <i class="ri-arrow-right-down-line"></i>
+            </a>
+            <a href="#contact" class="button button--outline">
+              Get in touch
+            </a>
+          </div>
 
           <ul class="home__social">
             <li>
@@ -116,7 +126,7 @@
               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
             />
             <div class="home__portrait-fallback" aria-hidden="true">MH</div>
-            <span class="home__badge">CV/ML</span>
+            <span class="home__badge">BS AI</span>
           </div>
         </div>
       </div>
@@ -140,30 +150,33 @@
         <div class="about__content">
           <p class="section__eyebrow">— ABOUT ME</p>
           <h2 class="section__title">
-            Building intelligent vision
-            <span class="italic-accent">systems</span>
+            Building AI systems that
+            <span class="italic-accent">ship</span>
           </h2>
 
           <p class="about__description">
-            I'm a 6th-semester BS AI student at SZABIST Islamabad, focused on
-            <span class="accent">computer vision</span> and
-            <span class="accent">production deployment</span>. I've shipped PixSearch
-            (mAP 0.93 on Hugging Face Spaces), open-sourced Valurex on GitHub,
-            and I'm building toward an MS in Germany for Fall 2027.
+            I'm a BS Artificial Intelligence student at SZABIST Islamabad,
+            graduating in 2027. Most of my work sits in
+            <span class="accent">retrieval and LLM systems</span>, with a
+            <span class="accent">computer vision</span> streak alongside it —
+            SupportGenie is a RAG support bot hardened against jailbreaks and
+            running live, and PixSearch is a CLIP-and-FAISS image search engine
+            on Hugging Face Spaces. I'm looking for an AI/ML internship, and
+            building toward an MS in Germany for Fall 2027.
           </p>
 
           <div class="about__stats">
             <div class="about__stat">
-              <span class="about__stat-number">4+</span>
-              <span class="about__stat-label">Projects shipped</span>
+              <span class="about__stat-number">83%</span>
+              <span class="about__stat-label">hit rate@3 · SupportGenie</span>
             </div>
             <div class="about__stat">
               <span class="about__stat-number">0.93</span>
               <span class="about__stat-label">mAP · PixSearch</span>
             </div>
             <div class="about__stat">
-              <span class="about__stat-number">Live</span>
-              <span class="about__stat-label">on HF Spaces</span>
+              <span class="about__stat-number">2</span>
+              <span class="about__stat-label">Live demos you can try</span>
             </div>
           </div>
 
@@ -184,68 +197,74 @@
 
         <div class="work__filters" role="tablist">
           <button class="work__filter active-filter" data-filter="all">All</button>
-          <button class="work__filter" data-filter="ml">ML</button>
-          <button class="work__filter" data-filter="cv">CV</button>
+          <button class="work__filter" data-filter="genai">RAG &amp; LLMs</button>
+          <button class="work__filter" data-filter="cv">Computer Vision</button>
+          <button class="work__filter" data-filter="ml">Classical ML</button>
           <button class="work__filter" data-filter="mobile">Mobile</button>
-          <button class="work__filter" data-filter="nlp">NLP</button>
         </div>
 
         <div class="work__grid grid">
-          <article class="work__card" data-category="ml cv" data-detection-label="PixSearch · conf: 0.97">
+          <article class="work__card" data-category="genai" data-detection-label="SupportGenie · conf: 0.97">
             <div class="work__image-wrapper">
-              <!-- TODO: replace with real project screenshot -->
+              <!-- TODO: add a real screenshot at assets/img/projects/supportgenie.png -->
+              <img src="assets/img/projects/supportgenie.png" alt="SupportGenie preview" class="work__image" onerror="this.style.display='none'" />
+              <a
+                href="https://support-genie.onrender.com"
+                target="_blank"
+                rel="noopener"
+                class="work__button"
+                aria-label="Open the SupportGenie live demo"
+              >
+                <i class="ri-arrow-right-up-line"></i>
+              </a>
+            </div>
+            <span class="work__number">01</span>
+            <h3 class="work__title">SupportGenie</h3>
+            <p class="work__description">
+              A white-label RAG support chatbot. Retrieval below a calibrated
+              confidence threshold never reaches the LLM, so it admits it
+              doesn't know instead of inventing a refund policy. Hardened
+              against jailbreaks and role-swap prompts. 83% hit rate@3 on a
+              held-out eval set.
+            </p>
+            <div class="work__links">
+              <a href="https://github.com/haroon-ai1/Support_Genie" target="_blank" rel="noopener noreferrer" class="work__link">Code ↗</a>
+              <a href="https://support-genie.onrender.com" target="_blank" rel="noopener noreferrer" class="work__link">Live Demo ↗</a>
+            </div>
+          </article>
+
+          <article class="work__card" data-category="cv genai" data-detection-label="PixSearch · conf: 0.94">
+            <div class="work__image-wrapper">
               <img src="assets/img/projects/pixsearch.png" alt="PixSearch preview" class="work__image" onerror="this.style.display='none'" />
               <a
                 href="https://huggingface.co/spaces/haroon8124/pixsearch"
                 target="_blank"
                 rel="noopener"
                 class="work__button"
-                aria-label="Open PixSearch"
-              >
-                <i class="ri-arrow-right-up-line"></i>
-              </a>
-            </div>
-            <span class="work__number">01</span>
-            <h3 class="work__title">PixSearch</h3>
-            <p class="work__description">
-              Content-based image retrieval engine. ResNet-50 + CLIP ViT-B/32 + FAISS.
-              mAP 0.93 on 10k-image benchmark. Live on Hugging Face Spaces.
-            </p>
-            <div class="work__links">
-              <a href="https://github.com/haroon-ai1" target="_blank" rel="noopener noreferrer" class="work__link">Code ↗</a>
-              <a href="https://huggingface.co/spaces/haroon8124/pixsearch" target="_blank" rel="noopener noreferrer" class="work__link">Live Demo ↗</a>
-            </div>
-          </article>
-
-          <article class="work__card" data-category="mobile" data-detection-label="Valurex · conf: 0.94">
-            <div class="work__image-wrapper">
-              <img src="assets/img/projects/valurex.png" alt="Valurex preview" class="work__image" onerror="this.style.display='none'" />
-              <a
-                href="https://github.com/haroon-ai1"
-                target="_blank"
-                rel="noopener"
-                class="work__button"
-                aria-label="Open Valurex on GitHub"
+                aria-label="Open the PixSearch live demo"
               >
                 <i class="ri-arrow-right-up-line"></i>
               </a>
             </div>
             <span class="work__number">02</span>
-            <h3 class="work__title">Valurex</h3>
+            <h3 class="work__title">PixSearch</h3>
             <p class="work__description">
-              Native Android personal-finance app. Jetpack Compose, MVVM, Room.
-              Open-source on GitHub.
+              Content-based image retrieval over a 10,000-image corpus.
+              ResNet-50 and CLIP ViT-B/32 embeddings benchmarked against a
+              classical HSV + HOG + ORB baseline, indexed in FAISS for
+              sub-millisecond top-K search on CPU. mAP 0.93.
             </p>
             <div class="work__links">
-              <a href="https://github.com/haroon-ai1" target="_blank" rel="noopener noreferrer" class="work__link">Code ↗</a>
+              <a href="https://github.com/haroon-ai1/Visual-Search-Engine-pixsearch" target="_blank" rel="noopener noreferrer" class="work__link">Code ↗</a>
+              <a href="https://huggingface.co/spaces/haroon8124/pixsearch" target="_blank" rel="noopener noreferrer" class="work__link">Live Demo ↗</a>
             </div>
           </article>
 
-          <article class="work__card" data-category="ml cv" data-detection-label="AgriVision-Pro · conf: 0.91">
+          <article class="work__card" data-category="cv ml" data-detection-label="AgriVision-Pro · conf: 0.89">
             <div class="work__image-wrapper">
               <img src="assets/img/projects/agrivision.png" alt="AgriVision-Pro preview" class="work__image" onerror="this.style.display='none'" />
               <a
-                href="https://github.com/haroon-ai1"
+                href="https://github.com/haroon-ai1/AgriVision-Pro"
                 target="_blank"
                 rel="noopener"
                 class="work__button"
@@ -256,38 +275,43 @@
             </div>
             <span class="work__number">03</span>
             <h3 class="work__title">AgriVision-Pro</h3>
+            <!-- NOTE: this now matches the repo (K-Means + Random Forest).
+                 Your resume calls it a CNN in TensorFlow. Reconcile the two,
+                 then put the accuracy figure back in. -->
             <p class="work__description">
-              CNN-based plant-disease classifier. 79% accuracy on custom leaf
-              dataset. Deployed via Streamlit.
+              Plant disease detection from leaf images. K-Means segmentation
+              isolates the diseased region before a Random Forest classifies
+              it, wrapped in a desktop GUI. Per-class precision and recall
+              reported alongside overall accuracy.
             </p>
             <div class="work__links">
-              <a href="https://github.com/haroon-ai1" target="_blank" rel="noopener noreferrer" class="work__link">Code ↗</a>
-              <a href="https://github.com/haroon-ai1" target="_blank" rel="noopener noreferrer" class="work__link">Live Demo ↗</a>
+              <a href="https://github.com/haroon-ai1/AgriVision-Pro" target="_blank" rel="noopener noreferrer" class="work__link">Code ↗</a>
             </div>
           </article>
 
-          <article class="work__card" data-category="nlp" data-detection-label="SupportGenie · conf: 0.89">
+          <article class="work__card" data-category="mobile" data-detection-label="Valurex · conf: 0.71">
             <div class="work__image-wrapper">
-              <img src="assets/img/projects/supportgenie.png" alt="SupportGenie preview" class="work__image" onerror="this.style.display='none'" />
+              <img src="assets/img/projects/valurex.png" alt="Valurex preview" class="work__image" onerror="this.style.display='none'" />
+              <!-- TODO: replace with the real Valurex repo URL -->
               <a
                 href="https://github.com/haroon-ai1"
                 target="_blank"
                 rel="noopener"
                 class="work__button"
-                aria-label="Open SupportGenie on GitHub"
+                aria-label="Open Valurex on GitHub"
               >
                 <i class="ri-arrow-right-up-line"></i>
               </a>
             </div>
             <span class="work__number">04</span>
-            <h3 class="work__title">SupportGenie</h3>
+            <h3 class="work__title">Valurex</h3>
             <p class="work__description">
-              RAG customer-support chatbot. FastAPI + LangChain + FAISS + Groq API.
-              Retrieval over docs corpus.
+              A native Android budgeting app — Jetpack Compose, Room, home-screen
+              widgets. Built largely with AI coding assistance as a weekend
+              experiment in shipping outside my stack, and open-sourced as-is.
             </p>
             <div class="work__links">
               <a href="https://github.com/haroon-ai1" target="_blank" rel="noopener noreferrer" class="work__link">Code ↗</a>
-              <a href="https://github.com/haroon-ai1" target="_blank" rel="noopener noreferrer" class="work__link">Live Demo ↗</a>
             </div>
           </article>
         </div>
@@ -304,16 +328,16 @@
     <section class="services section" id="service">
       <div class="services__container container">
         <h2 class="section__title section__title--center">
-          My <span class="italic-accent">Services</span>
+          What I <span class="italic-accent">work on</span>
         </h2>
 
         <div class="services__grid grid">
           <article class="services__card">
-            <div class="services__icon"><i class="ri-eye-line"></i></div>
-            <h3 class="services__title">Computer Vision</h3>
+            <div class="services__icon"><i class="ri-chat-search-line"></i></div>
+            <h3 class="services__title">Retrieval &amp; LLM systems</h3>
             <p class="services__description">
-              Object detection, image retrieval, segmentation. Custom datasets,
-              transfer learning, evaluation.
+              RAG pipelines that cite their sources, refuse what they don't
+              know, and get measured on a real eval set.
             </p>
             <button class="services__link" data-modal-target="modal-cv">
               View more <i class="ri-arrow-right-up-line"></i>
@@ -321,11 +345,11 @@
           </article>
 
           <article class="services__card">
-            <div class="services__icon"><i class="ri-brain-line"></i></div>
-            <h3 class="services__title">Machine Learning</h3>
+            <div class="services__icon"><i class="ri-eye-line"></i></div>
+            <h3 class="services__title">Computer Vision</h3>
             <p class="services__description">
-              Model training, evaluation, debiasing. PyTorch and TensorFlow.
-              Research-grade rigor.
+              Image retrieval, classification, segmentation. Transfer learning
+              on custom datasets, benchmarked against classical baselines.
             </p>
             <button class="services__link" data-modal-target="modal-ml">
               View more <i class="ri-arrow-right-up-line"></i>
@@ -352,18 +376,18 @@
           <button class="modal__close" aria-label="Close dialog">
             <i class="ri-close-line"></i>
           </button>
-          <div class="modal__icon"><i class="ri-eye-line"></i></div>
-          <h3 class="modal__title">Computer Vision</h3>
+          <div class="modal__icon"><i class="ri-chat-search-line"></i></div>
+          <h3 class="modal__title">Retrieval &amp; LLM systems</h3>
           <p class="modal__description">
-            I build vision systems that solve real problems — from retrieval to
-            detection and segmentation. Every project ships with reproducible
-            benchmarks and a clear evaluation story.
+            Most RAG demos stop at the pipeline. The interesting work is the
+            failure modes: what the system does when retrieval comes back weak,
+            and what it does when someone tries to talk it out of its rules.
           </p>
           <ul class="modal__list">
-            <li><i class="ri-check-line"></i> Object detection with YOLOv8 / DETR</li>
-            <li><i class="ri-check-line"></i> Content-based image retrieval (CLIP, FAISS)</li>
-            <li><i class="ri-check-line"></i> Custom dataset curation &amp; labeling pipelines</li>
-            <li><i class="ri-check-line"></i> Transfer learning + evaluation harnesses</li>
+            <li><i class="ri-check-line"></i> Chunking, embeddings, FAISS retrieval</li>
+            <li><i class="ri-check-line"></i> Confidence gating instead of hallucinating</li>
+            <li><i class="ri-check-line"></i> Prompt-injection and jailbreak hardening</li>
+            <li><i class="ri-check-line"></i> Hit rate@k and MRR on held-out eval sets</li>
           </ul>
         </div>
       </div>
@@ -373,17 +397,18 @@
           <button class="modal__close" aria-label="Close dialog">
             <i class="ri-close-line"></i>
           </button>
-          <div class="modal__icon"><i class="ri-brain-line"></i></div>
-          <h3 class="modal__title">Machine Learning</h3>
+          <div class="modal__icon"><i class="ri-eye-line"></i></div>
+          <h3 class="modal__title">Computer Vision</h3>
           <p class="modal__description">
-            End-to-end ML work with research-grade rigor. From data audit through
-            to a documented, reviewable model card.
+            Vision work with the evaluation attached. A deep model only counts
+            if it beats the classical baseline I ran first, and per-class
+            numbers go in the report next to the headline accuracy.
           </p>
           <ul class="modal__list">
-            <li><i class="ri-check-line"></i> Model training in PyTorch &amp; TensorFlow</li>
-            <li><i class="ri-check-line"></i> Hyperparameter search &amp; ablations</li>
-            <li><i class="ri-check-line"></i> Bias / fairness evaluation</li>
-            <li><i class="ri-check-line"></i> Reproducible experiment tracking</li>
+            <li><i class="ri-check-line"></i> Content-based image retrieval (CLIP, ResNet, FAISS)</li>
+            <li><i class="ri-check-line"></i> CNN classification and transfer learning</li>
+            <li><i class="ri-check-line"></i> Classical baselines: HSV, HOG, ORB, K-Means</li>
+            <li><i class="ri-check-line"></i> Per-class precision and recall, not just accuracy</li>
           </ul>
         </div>
       </div>
@@ -423,19 +448,39 @@
               <span class="skills__tag"><i class="ri-code-s-slash-line"></i> Python</span>
               <span class="skills__tag"><i class="ri-code-s-slash-line"></i> C++</span>
               <span class="skills__tag"><i class="ri-database-2-line"></i> SQL</span>
-              <span class="skills__tag"><i class="ri-android-line"></i> Kotlin</span>
+              <span class="skills__tag"><i class="ri-git-branch-line"></i> Git</span>
             </div>
           </article>
 
           <article class="skills__card">
-            <h3 class="skills__category">ML / CV</h3>
+            <h3 class="skills__category">GenAI &amp; Retrieval</h3>
+            <div class="skills__tags">
+              <span class="skills__tag"><i class="ri-search-eye-line"></i> RAG</span>
+              <span class="skills__tag"><i class="ri-links-line"></i> LangChain</span>
+              <span class="skills__tag"><i class="ri-stack-line"></i> FAISS</span>
+              <span class="skills__tag"><i class="ri-text-block"></i> Sentence-Transformers</span>
+              <span class="skills__tag"><i class="ri-robot-2-line"></i> LLM APIs</span>
+            </div>
+          </article>
+
+          <article class="skills__card">
+            <h3 class="skills__category">Deep Learning</h3>
             <div class="skills__tags">
               <span class="skills__tag"><i class="ri-fire-line"></i> PyTorch</span>
               <span class="skills__tag"><i class="ri-flow-chart"></i> TensorFlow</span>
+              <span class="skills__tag"><i class="ri-scatter-chart-line"></i> scikit-learn</span>
+              <span class="skills__tag"><i class="ri-grid-line"></i> CNNs</span>
+              <span class="skills__tag"><i class="ri-time-line"></i> LSTMs</span>
+            </div>
+          </article>
+
+          <article class="skills__card">
+            <h3 class="skills__category">Computer Vision</h3>
+            <div class="skills__tags">
               <span class="skills__tag"><i class="ri-eye-line"></i> OpenCV</span>
-              <span class="skills__tag"><i class="ri-focus-3-line"></i> YOLOv8</span>
               <span class="skills__tag"><i class="ri-image-2-line"></i> CLIP</span>
-              <span class="skills__tag"><i class="ri-search-eye-line"></i> FAISS</span>
+              <span class="skills__tag"><i class="ri-layout-grid-line"></i> ResNet</span>
+              <span class="skills__tag"><i class="ri-contrast-2-line"></i> scikit-image</span>
             </div>
           </article>
 
@@ -445,15 +490,25 @@
               <span class="skills__tag"><i class="ri-server-line"></i> FastAPI</span>
               <span class="skills__tag"><i class="ri-ship-line"></i> Docker</span>
               <span class="skills__tag"><i class="ri-emotion-happy-line"></i> Hugging Face</span>
-              <span class="skills__tag"><i class="ri-git-branch-line"></i> Git</span>
+              <span class="skills__tag"><i class="ri-cloud-line"></i> Render</span>
             </div>
           </article>
-        </div>
       </div>
     </section>
 
-    <!-- ================= TESTIMONIALS ================= -->
-    <!-- TODO: REPLACE with real quotes from professors, mentors, or project collaborators before shipping to recruiters -->
+    <!-- =================================================================
+         TESTIMONIALS — COMMENTED OUT, NOT DELETED.
+
+         These three quotes were never actually said by Mubashir Ahmad,
+         Swati Srivastava, or Zia Mehmood. They are invented text attributed
+         to real, named people on a public page that recruiters will read,
+         and Zia is someone you actually know and could just ask.
+
+         Get two real quotes and uncomment this. Until then it stays off.
+         ================================================================= -->
+    <!--
+    [[ ================= TESTIMONIALS ================= ]]
+    [[ TODO: REPLACE with real quotes from professors, mentors, or project collaborators before shipping to recruiters ]]
     <section class="testimonials section">
       <div class="testimonials__container container">
         <h2 class="section__title section__title--center">
@@ -527,6 +582,8 @@
         </div>
       </div>
     </section>
+
+    -->
 
     <!-- ================= CONTACT ================= -->
     <section class="contact section" id="contact">
@@ -612,13 +669,13 @@
   <footer class="footer">
     <div class="footer__container container">
       <h2 class="footer__statement">
-        COLLABORATE AND START BUILDING VISION SYSTEMS THAT
-        <span class="italic-accent">SHIP TODAY.</span>
+        LOOKING FOR AN AI/ML INTERNSHIP WHERE I CAN
+        <span class="italic-accent">SHIP REAL SYSTEMS.</span>
       </h2>
 
       <ul class="footer__nav">
         <li><a href="#work" class="footer__link">Works</a></li>
-        <li><a href="#service" class="footer__link">Services</a></li>
+        <li><a href="#service" class="footer__link">Focus</a></li>
         <li><a href="#skills" class="footer__link">Skills</a></li>
       </ul>
 

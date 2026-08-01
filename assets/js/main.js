@@ -20,9 +20,14 @@
   let lenis = null;
   if (!prefersReducedMotion && typeof Lenis !== 'undefined') {
     lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      // Longer glide + a softer exponential tail. 1.2 stopped too abruptly;
+      // 1.65 lets the page coast to rest instead of snapping.
+      duration: 1.65,
+      easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -9 * t)),
       smoothWheel: true,
+      wheelMultiplier: 0.85,
+      touchMultiplier: 1.4,
+      lerp: 0.085,
     });
     function raf(time) {
       lenis.raf(time);
@@ -139,6 +144,14 @@
         const show = filter === 'all' || cats.includes(filter);
         card.classList.toggle('is-hidden', !show);
       });
+
+      // Restart the settle animation on the cards that stayed visible.
+      const grid = document.querySelector('.work__grid');
+      if (grid) {
+        grid.classList.remove('is-filtering');
+        void grid.offsetWidth;
+        grid.classList.add('is-filtering');
+      }
     });
   });
 
@@ -256,20 +269,25 @@
   if (!prefersReducedMotion && typeof ScrollReveal !== 'undefined') {
     const sr = ScrollReveal({
       origin: 'bottom',
-      distance: '50px',
-      duration: 1400,
-      delay: 150,
-      easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      // 50px of travel is what made these read as a "jump". Shorter distance
+      // on a pure ease-out curve reads as a settle instead.
+      distance: '22px',
+      duration: 1150,
+      delay: 90,
+      easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+      opacity: 0,
+      scale: 1,
       reset: false,
+      mobile: true,
     });
 
     sr.reveal('.home__content, .home__image');
-    sr.reveal('.about__image, .about__content', { interval: 150 });
-    sr.reveal('.work__card', { interval: 150 });
-    sr.reveal('.services__card', { interval: 150 });
-    sr.reveal('.skills__card', { interval: 150 });
+    sr.reveal('.about__image, .about__content', { interval: 110 });
+    sr.reveal('.work__card', { interval: 110 });
+    sr.reveal('.services__card', { interval: 110 });
+    sr.reveal('.skills__card', { interval: 110 });
     sr.reveal('.testimonials__swiper');
-    sr.reveal('.contact__intro, .contact__info', { interval: 150 });
+    sr.reveal('.contact__intro, .contact__info', { interval: 110 });
     sr.reveal('.footer__statement');
   }
 
@@ -286,6 +304,15 @@
       let animId = null;
       const NODE_COUNT = 30;
       const CONNECT_DIST = 130;
+
+      // Pull the channels from the stylesheet so the canvas follows the
+      // theme tokens. On a light ground the strokes need more alpha than
+      // they did on near-black, or the mesh disappears.
+      const rootStyle = getComputedStyle(document.documentElement);
+      const NET_RGB =
+        (rootStyle.getPropertyValue('--accent-rgb') || '37, 99, 235').trim();
+      const LINE_ALPHA = 0.42;
+      const NODE_ALPHA = 0.55;
 
       function resize() {
         // Fall back to viewport dims if hero hasn't laid out yet — a zero
@@ -320,7 +347,8 @@
             const dy = nodes[i].y - nodes[j].y;
             const d = Math.hypot(dx, dy);
             if (d < CONNECT_DIST) {
-              ctx.strokeStyle = `rgba(96, 165, 250, ${(1 - d / CONNECT_DIST) * 0.35})`;
+              ctx.strokeStyle =
+                `rgba(${NET_RGB}, ${(1 - d / CONNECT_DIST) * LINE_ALPHA})`;
               ctx.lineWidth = 0.5;
               ctx.beginPath();
               ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -330,7 +358,7 @@
           }
         }
         nodes.forEach((n) => {
-          ctx.fillStyle = 'rgba(96, 165, 250, 0.6)';
+          ctx.fillStyle = `rgba(${NET_RGB}, ${NODE_ALPHA})`;
           ctx.beginPath();
           ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
           ctx.fill();
@@ -426,7 +454,11 @@
       e.preventDefault();
 
       if (lenis) {
-        lenis.scrollTo(target, { offset: -60 });
+        lenis.scrollTo(target, {
+          offset: -72,
+          duration: 1.8,
+          easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -9 * t)),
+        });
       } else {
         const y = target.getBoundingClientRect().top + window.scrollY - 60;
         window.scrollTo({
@@ -441,29 +473,32 @@
      10. Typed.js — rotating hero role (kept LAST, isolated).
      ----------------------------------------------------------- */
   const typedTarget = document.getElementById('typed-target');
-  if (typedTarget && typeof Typed !== 'undefined') {
+  // If the CDN is blocked or the visitor prefers reduced motion, the hero
+  // must still read as a complete sentence rather than a dangling line.
+  const TYPED_FALLBACK = 'retrieval & RAG systems.';
+
+  if (typedTarget && (prefersReducedMotion || typeof Typed === 'undefined')) {
+    typedTarget.textContent = TYPED_FALLBACK;
+  } else if (typedTarget && typeof Typed !== 'undefined') {
     try {
       new Typed('#typed-target', {
         strings: [
-          'ML Engineer.',
-          'AI Developer.',
-          'CV Researcher.',
-          'Deep Learning nerd.'
+          'retrieval &amp; RAG systems.',
+          'computer vision.',
+          'applied deep learning.',
+          'models that reach production.'
         ],
-        typeSpeed: 55,
-        backSpeed: 35,
-        backDelay: 2200,
-        startDelay: 400,
+        typeSpeed: 72,
+        backSpeed: 28,
+        backDelay: 2800,
+        startDelay: 700,
         loop: true,
         smartBackspace: true,
         showCursor: true,
         cursorChar: '|'
       });
-      console.log('[typed] initialized');
     } catch (e) {
       console.error('[typed] init failed:', e);
     }
-  } else {
-    console.warn('[typed] skipped — target or library missing');
   }
 })();
