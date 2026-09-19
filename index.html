@@ -72,6 +72,7 @@
       <div class="nav__menu" id="nav-menu">
         <ul class="nav__list">
           <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
+          <li class="nav__item"><a href="#experience" class="nav__link">Experience</a></li>
           <li class="nav__item"><a href="#work" class="nav__link">Works</a></li>
           <li class="nav__item"><a href="#service" class="nav__link">Focus</a></li>
           <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
@@ -105,8 +106,8 @@
             <span class="home__title-italic"><span id="typed-target"></span></span>
           </h1>
           <p class="home__description">
-            I build AI systems end to end retrieval, vision, deployment, and
-            I evaluate them before I call them done.
+            I build AI systems end to end: retrieval, computer vision, and
+            deployment. And I evaluate them before I call them done.
           </p>
 
           <div class="home__actions">
@@ -181,14 +182,16 @@
           </h2>
 
           <p class="about__description">
-            I'm a BS Artificial Intelligence student at SZABIST Islamabad,
-            graduating in 2027. Most of my work sits in
-            <span class="accent">retrieval and LLM systems</span>, with a
-            <span class="accent">computer vision</span> streak alongside it —
-            SupportGenie is a RAG support bot hardened against jailbreaks and
-            running live, and PixSearch is a CLIP-and-FAISS image search engine
-            on Hugging Face Spaces. I'm looking for an AI/ML internship, and
-            building toward an MS in Germany for Fall 2027.
+            I'm a BS Artificial Intelligence student at SZABIST Islamabad
+            (CGPA 3.55), graduating in 2027. Most of my work sits in
+            <span class="accent">retrieval and LLM systems</span> and
+            <span class="accent">computer vision</span>. SupportGenie is a RAG
+            support bot that abstains when retrieval is weak and holds up
+            against jailbreaks; PixSearch is a CLIP-and-FAISS image search
+            engine on Hugging Face Spaces. Alongside my degree I run the
+            production website and SEO for a Dubai business, so I know what
+            keeping a live system up actually involves. I'm looking for an
+            AI/ML internship, and building toward an MS in Germany for Fall 2027.
           </p>
 
           <div class="about__stats">
@@ -214,6 +217,48 @@
       </div>
     </section>
 
+    <!-- ================= EXPERIENCE ================= -->
+    <section class="experience section" id="experience">
+      <div class="experience__container container">
+        <h2 class="section__title section__title--center">
+          Where I've <span class="italic-accent">worked</span>
+        </h2>
+
+        <ol class="experience__list">
+          <li class="experience__item">
+            <div class="experience__meta">
+              <span class="experience__date">Aug 2026 – Present</span>
+              <span class="experience__place">Part-time · Remote</span>
+            </div>
+            <div class="experience__body">
+              <h3 class="experience__role">Web Developer &amp; SEO</h3>
+              <p class="experience__company">Battery Boost Dubai</p>
+              <ul class="experience__points">
+                <li>Recovered the production WordPress site after a plugin-caused outage and migrated it to new hosting, restoring the business's main lead channel.</li>
+                <li>Built and maintain a custom WordPress plugin for site-specific functionality.</li>
+                <li>Led a technical SEO overhaul from a Search Console baseline: Rank Math, meta titles and descriptions, schema markup, keyword cannibalization fixes, and disavowal of 61 spam referring domains.</li>
+                <li>Set up GA4 event tracking for WhatsApp and phone-call leads, and publish SEO articles on a recurring schedule.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="experience__item">
+            <div class="experience__meta">
+              <span class="experience__date">Jul 2025</span>
+              <span class="experience__place">Internship · Remote</span>
+            </div>
+            <div class="experience__body">
+              <h3 class="experience__role">Machine Learning Intern</h3>
+              <p class="experience__company">CodeAlpha</p>
+              <ul class="experience__points">
+                <li>Trained regression and tree-based models on structured data, improving baseline R² and MSE on held-out splits through feature engineering and hyperparameter tuning.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
     <!-- ================= WORK / PROJECTS ================= -->
     <section class="work section" id="work">
       <div class="work__container container">
@@ -225,7 +270,6 @@
           <button class="work__filter active-filter" data-filter="all">All</button>
           <button class="work__filter" data-filter="genai">RAG &amp; LLMs</button>
           <button class="work__filter" data-filter="cv">Computer Vision</button>
-          <button class="work__filter" data-filter="ml">Classical ML</button>
           <button class="work__filter" data-filter="mobile">Mobile</button>
         </div>
 
@@ -246,10 +290,11 @@
             <span class="work__number">01</span>
             <h3 class="work__title">SupportGenie</h3>
             <p class="work__description">
-              A white-label RAG support chatbot. Retrieval below a calibrated
-              confidence threshold never reaches the LLM, so it admits it
-              doesn't know instead of inventing a refund policy. Hardened
-              against jailbreaks and role-swap prompts. 83% hit rate@3 on a
+              A white-label RAG support platform: businesses plug in their own
+              docs and get an assistant that cites its sources. Retrieval below
+              a calibrated confidence threshold never reaches the LLM, so it
+              hands off to a human instead of inventing a refund policy.
+              Hardened against jailbreak and role-swap prompts. 83% Hit@3 on a
               held-out eval set.
             </p>
             <div class="work__links">
@@ -258,7 +303,7 @@
             </div>
           </article>
 
-          <article class="work__card" data-category="cv genai" data-detection-label="PixSearch · conf: 0.94">
+          <article class="work__card" data-category="cv" data-detection-label="PixSearch · conf: 0.94">
             <div class="work__image-wrapper">
               <img src="assets/img/projects/pixsearch.png" alt="PixSearch preview" class="work__image" onerror="this.style.display='none'" />
               <a
@@ -274,7 +319,7 @@
             <span class="work__number">02</span>
             <h3 class="work__title">PixSearch</h3>
             <p class="work__description">
-              Content-based image retrieval over a 10,000-image corpus.
+              Content-based image retrieval over a 1,000-image corpus.
               ResNet-50 and CLIP ViT-B/32 embeddings benchmarked against a
               classical HSV + HOG + ORB baseline, indexed in FAISS for
               sub-millisecond top-K search on CPU. mAP 0.93.
@@ -285,7 +330,7 @@
             </div>
           </article>
 
-          <article class="work__card" data-category="cv ml" data-detection-label="AgriVision-Pro · conf: 0.89">
+          <article class="work__card" data-category="cv" data-detection-label="AgriVision-Pro · conf: 0.89">
             <div class="work__image-wrapper">
               <img src="assets/img/projects/agrivision.png" alt="AgriVision-Pro preview" class="work__image" onerror="this.style.display='none'" />
               <a
@@ -300,14 +345,12 @@
             </div>
             <span class="work__number">03</span>
             <h3 class="work__title">AgriVision-Pro</h3>
-            <!-- NOTE: this now matches the repo (K-Means + Random Forest).
-                 Your resume calls it a CNN in TensorFlow. Reconcile the two,
-                 then put the accuracy figure back in. -->
             <p class="work__description">
-              Plant disease detection from leaf images. K-Means segmentation
-              isolates the diseased region before a Random Forest classifies
-              it, wrapped in a desktop GUI. Per-class precision and recall
-              reported alongside overall accuracy.
+              Plant disease detection from leaf images. A CNN built in
+              TensorFlow/Keras classifies leaves as healthy or one of several
+              diseases, trained with resizing, normalization, and augmentation.
+              79% test accuracy, with per-class precision and recall reported
+              alongside it.
             </p>
             <div class="work__links">
               <a href="https://github.com/haroon-ai1/AgriVision-Pro" target="_blank" rel="noopener noreferrer" class="work__link">Code ↗</a>
@@ -317,7 +360,6 @@
           <article class="work__card" data-category="mobile" data-detection-label="Valurex · conf: 0.71">
             <div class="work__image-wrapper">
               <img src="assets/img/projects/valurex.png" alt="Valurex preview" class="work__image" onerror="this.style.display='none'" />
-              <a href="https://github.com/haroon-ai1/Valurex" target="_blank" rel="noopener noreferrer" class="work__link">
               <a
                 href="https://github.com/haroon-ai1/Valurex"
                 target="_blank"
@@ -331,9 +373,9 @@
             <span class="work__number">04</span>
             <h3 class="work__title">Valurex</h3>
             <p class="work__description">
-              A native Android budgeting app — Jetpack Compose, Room, home-screen
-              widgets. Built largely with AI coding assistance as a weekend
-              experiment in shipping outside my stack, and open-sourced as-is.
+              A native Android budgeting app built with Kotlin, Jetpack Compose,
+              and Room, with home-screen widgets. A side project in shipping
+              outside my ML stack, open-sourced on GitHub.
             </p>
             <div class="work__links">
               <a href="https://github.com/haroon-ai1/Valurex" target="_blank" rel="noopener noreferrer" class="work__link">Code ↗</a>
@@ -385,8 +427,8 @@
             <div class="services__icon"><i class="ri-rocket-line"></i></div>
             <h3 class="services__title">Deployment &amp; MLOps</h3>
             <p class="services__description">
-              FastAPI, Docker, Hugging Face Spaces. Ship models to production
-              endpoints.
+              FastAPI, Docker, Streamlit, Hugging Face Spaces. Models turned
+              into services and demos people can use.
             </p>
             <button class="services__link" data-modal-target="modal-deploy">
               View more <i class="ri-arrow-right-up-line"></i>
@@ -412,7 +454,7 @@
             <li><i class="ri-check-line"></i> Chunking, embeddings, FAISS retrieval</li>
             <li><i class="ri-check-line"></i> Confidence gating instead of hallucinating</li>
             <li><i class="ri-check-line"></i> Prompt-injection and jailbreak hardening</li>
-            <li><i class="ri-check-line"></i> Hit rate@k and MRR on held-out eval sets</li>
+            <li><i class="ri-check-line"></i> Hit rate@k on held-out eval sets</li>
           </ul>
         </div>
       </div>
@@ -431,8 +473,8 @@
           </p>
           <ul class="modal__list">
             <li><i class="ri-check-line"></i> Content-based image retrieval (CLIP, ResNet, FAISS)</li>
-            <li><i class="ri-check-line"></i> CNN classification and transfer learning</li>
-            <li><i class="ri-check-line"></i> Classical baselines: HSV, HOG, ORB, K-Means</li>
+            <li><i class="ri-check-line"></i> CNN classification, augmentation, and transfer learning</li>
+            <li><i class="ri-check-line"></i> Classical baselines: HSV, HOG, ORB</li>
             <li><i class="ri-check-line"></i> Per-class precision and recall, not just accuracy</li>
           </ul>
         </div>
@@ -447,13 +489,13 @@
           <h3 class="modal__title">Deployment &amp; MLOps</h3>
           <p class="modal__description">
             A model on your laptop isn't shipped. I package models into services
-            people can actually hit — with logging, versioning, and a rollback plan.
+            and demos people can actually use, and keep them running.
           </p>
           <ul class="modal__list">
             <li><i class="ri-check-line"></i> FastAPI inference endpoints</li>
-            <li><i class="ri-check-line"></i> Dockerized services &amp; CI</li>
-            <li><i class="ri-check-line"></i> Hugging Face Spaces deployments</li>
-            <li><i class="ri-check-line"></i> Monitoring &amp; model versioning</li>
+            <li><i class="ri-check-line"></i> Dockerized services</li>
+            <li><i class="ri-check-line"></i> Hugging Face Spaces and Render deployments</li>
+            <li><i class="ri-check-line"></i> Streamlit demo apps</li>
           </ul>
         </div>
       </div>
@@ -476,7 +518,6 @@
               <span class="skills__tag"><i class="ri-git-branch-line"></i> Git</span>
             </div>
           </article>
-
           <article class="skills__card">
             <h3 class="skills__category">GenAI &amp; Retrieval</h3>
             <div class="skills__tags">
@@ -487,18 +528,16 @@
               <span class="skills__tag"><i class="ri-robot-2-line"></i> LLM APIs</span>
             </div>
           </article>
-
           <article class="skills__card">
             <h3 class="skills__category">Deep Learning</h3>
             <div class="skills__tags">
               <span class="skills__tag"><i class="ri-fire-line"></i> PyTorch</span>
-              <span class="skills__tag"><i class="ri-flow-chart"></i> TensorFlow</span>
+              <span class="skills__tag"><i class="ri-flow-chart"></i> TensorFlow/Keras</span>
               <span class="skills__tag"><i class="ri-scatter-chart-line"></i> scikit-learn</span>
               <span class="skills__tag"><i class="ri-grid-line"></i> CNNs</span>
-              <span class="skills__tag"><i class="ri-time-line"></i> LSTMs</span>
+              <span class="skills__tag"><i class="ri-share-forward-line"></i> Transfer learning</span>
             </div>
           </article>
-
           <article class="skills__card">
             <h3 class="skills__category">Computer Vision</h3>
             <div class="skills__tags">
@@ -506,18 +545,32 @@
               <span class="skills__tag"><i class="ri-image-2-line"></i> CLIP</span>
               <span class="skills__tag"><i class="ri-layout-grid-line"></i> ResNet</span>
               <span class="skills__tag"><i class="ri-contrast-2-line"></i> scikit-image</span>
+              <span class="skills__tag"><i class="ri-image-line"></i> Image retrieval</span>
             </div>
           </article>
-
           <article class="skills__card">
-            <h3 class="skills__category">Deployment</h3>
+            <h3 class="skills__category">Deployment &amp; Tools</h3>
             <div class="skills__tags">
               <span class="skills__tag"><i class="ri-server-line"></i> FastAPI</span>
               <span class="skills__tag"><i class="ri-ship-line"></i> Docker</span>
+              <span class="skills__tag"><i class="ri-slideshow-line"></i> Streamlit</span>
               <span class="skills__tag"><i class="ri-emotion-happy-line"></i> Hugging Face</span>
               <span class="skills__tag"><i class="ri-cloud-line"></i> Render</span>
+              <span class="skills__tag"><i class="ri-terminal-box-line"></i> Claude Code</span>
+              <span class="skills__tag"><i class="ri-terminal-box-line"></i> OpenAI Codex</span>
             </div>
           </article>
+          <article class="skills__card">
+            <h3 class="skills__category">Web &amp; SEO</h3>
+            <div class="skills__tags">
+              <span class="skills__tag"><i class="ri-global-line"></i> WordPress</span>
+              <span class="skills__tag"><i class="ri-google-line"></i> Search Console</span>
+              <span class="skills__tag"><i class="ri-line-chart-line"></i> GA4</span>
+              <span class="skills__tag"><i class="ri-search-line"></i> Rank Math</span>
+              <span class="skills__tag"><i class="ri-code-box-line"></i> Schema markup</span>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -699,6 +752,7 @@
       </h2>
 
       <ul class="footer__nav">
+        <li><a href="#experience" class="footer__link">Experience</a></li>
         <li><a href="#work" class="footer__link">Works</a></li>
         <li><a href="#service" class="footer__link">Focus</a></li>
         <li><a href="#skills" class="footer__link">Skills</a></li>

@@ -1002,6 +1002,102 @@ body.menu-open {
   margin-top: 3px;
 }
 
+
+/* ---------- Experience ---------- */
+.experience__list {
+  list-style: none;
+  display: grid;
+  gap: 1.25rem;
+  max-width: 920px;
+  margin-inline: auto;
+}
+
+.experience__item {
+  display: grid;
+  gap: 0.75rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--dur-slow) var(--ease),
+              box-shadow var(--dur-slow) var(--ease);
+}
+
+.experience__item:hover {
+  border-color: transparent;
+  box-shadow: var(--shadow-ring);
+}
+
+.experience__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+  align-items: baseline;
+}
+
+.experience__date {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--accent-primary);
+}
+
+.experience__place {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.experience__role {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.experience__company {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.experience__points {
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  max-width: 68ch;
+}
+
+.experience__points li {
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+.experience__points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-deep);
+}
+
+@media (min-width: 768px) {
+  .experience__item {
+    grid-template-columns: 170px 1fr;
+    gap: 2rem;
+    padding: 1.75rem 2rem;
+  }
+
+  .experience__meta {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+}
+
 /* ---------- 10. Skills ---------- */
 .skills__list {
   display: grid;
@@ -1519,7 +1615,12 @@ body.custom-cursor .cursor {
     justify-items: start;
   }
 
-  .work__grid,
+  /* Four projects sit as a 2x2 grid instead of 3 + 1 orphan */
+  .work__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
   .services__grid {
     grid-template-columns: repeat(3, 1fr);
   }

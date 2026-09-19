@@ -213,7 +213,7 @@
   const EMAILJS_TEMPLATE_ID = 'REPLACE_TEMPLATE_ID';
   const EMAILJS_PUBLIC_KEY  = 'REPLACE_PUBLIC_KEY';
   // TODO: replace with real email — used by mailto: fallback
-  const FALLBACK_EMAIL      = 'REPLACE_WITH_YOUR_EMAIL';
+  const FALLBACK_EMAIL      = 'muhammadharoon8124@gmail.com';
 
   const emailjsConfigured =
     !EMAILJS_SERVICE_ID.includes('REPLACE_') &&
@@ -283,6 +283,7 @@
 
     sr.reveal('.home__content, .home__image');
     sr.reveal('.about__image, .about__content', { interval: 110 });
+    sr.reveal('.experience__item', { interval: 110 });
     sr.reveal('.work__card', { interval: 110 });
     sr.reveal('.services__card', { interval: 110 });
     sr.reveal('.skills__card', { interval: 110 });
